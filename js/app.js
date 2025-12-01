@@ -503,6 +503,47 @@ function initializeEventHandlers() {
         });
     }
     
+    // Pasir Ris cleanup specific buttons
+    const joinPasirRisBtn = document.getElementById('join-pasir-ris');
+    const getDirectionsBtn = document.getElementById('get-directions');
+    
+    if (joinPasirRisBtn) {
+        joinPasirRisBtn.addEventListener('click', () => {
+            showToast('Welcome to the Pasir Ris cleanup crew! 🏖️', 'success');
+            // Add user to Pasir Ris event
+            setTimeout(() => {
+                showToast('Event details sent to your notifications!', 'info');
+            }, 1500);
+        });
+    }
+    
+    if (getDirectionsBtn) {
+        getDirectionsBtn.addEventListener('click', () => {
+            // Open Google Maps with directions to Pasir Ris cleanup location
+            const lat = 1.381497;
+            const lng = 103.955574;
+            const destination = `${lat},${lng}`;
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${destination}&destination_place_id=ChIJBeDdljg9ZDERi4uLi4uLi4s`;
+            
+            // Try to open in Google Maps app first, fallback to web
+            const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            if (isMobile) {
+                // Try Google Maps app first
+                window.location.href = `google.navigation:q=${lat},${lng}`;
+                
+                // Fallback to web after a short delay
+                setTimeout(() => {
+                    window.open(url, '_blank');
+                }, 500);
+            } else {
+                window.open(url, '_blank');
+            }
+            
+            showToast('Opening directions to Pasir Ris Beach! 🗺️', 'success');
+        });
+    }
+    
     // Crew actions
     const inviteFriendsBtn = document.getElementById('invite-friends');
     const findSquadBtn = document.getElementById('find-squad');

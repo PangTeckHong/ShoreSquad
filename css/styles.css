@@ -412,6 +412,71 @@ p {
 }
 
 /* ===================================
+   NEXT CLEANUP SECTION
+   =================================== */
+
+.next-cleanup-section {
+  background: linear-gradient(135deg, var(--accent-coral) 0%, var(--warning-orange) 100%);
+  color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin: 0 calc(-1 * var(--spacing-md));
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+}
+
+.next-cleanup-section h3 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--spacing-lg);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.next-cleanup-info {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  backdrop-filter: blur(10px);
+}
+
+.next-cleanup-info p {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+}
+
+.next-cleanup-info strong {
+  font-weight: 700;
+}
+
+.google-maps-container {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--spacing-lg);
+  height: 350px;
+}
+
+.google-map-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.cleanup-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.cleanup-actions .btn {
+  min-width: 160px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ===================================
    EVENTS SECTION
    =================================== */
 
@@ -688,6 +753,20 @@ p {
     max-width: 300px;
   }
   
+  .google-maps-container {
+    height: 280px;
+  }
+  
+  .cleanup-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .cleanup-actions .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
   .map {
     height: 300px;
   }
@@ -706,6 +785,22 @@ p {
   
   .hero h2 {
     font-size: var(--font-size-xl);
+  }
+  
+  .next-cleanup-section {
+    padding: var(--spacing-lg);
+  }
+  
+  .next-cleanup-section h3 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .google-maps-container {
+    height: 250px;
+  }
+  
+  .next-cleanup-info p {
+    font-size: var(--font-size-base);
   }
   
   .events-grid {
