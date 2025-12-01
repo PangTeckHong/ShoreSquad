@@ -323,56 +323,175 @@ p {
 }
 
 /* ===================================
-   WEATHER WIDGET
+   SINGAPORE WEATHER WIDGET
    =================================== */
 
 .weather-widget {
-  background-color: var(--gray-light);
+  background: linear-gradient(135deg, var(--light-blue) 0%, var(--secondary-beige) 100%);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
   text-align: center;
+  box-shadow: var(--shadow-md);
 }
 
 .weather-widget h3 {
   color: var(--dark-navy);
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-xl);
+}
+
+.weather-source {
+  margin-bottom: var(--spacing-lg);
+  opacity: 0.8;
+}
+
+.weather-source small {
+  color: var(--gray-dark);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
 }
 
 .weather-info {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
 }
 
 .weather-loading {
   color: var(--gray-medium);
   font-style: italic;
+  padding: var(--spacing-lg);
 }
 
-.weather-card {
-  background-color: var(--white);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-md);
-  box-shadow: var(--shadow-sm);
+/* Current Weather Card */
+.current-weather {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--success-green) 100%);
+  color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.current-weather h4 {
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
 }
 
 .weather-temp {
-  font-size: var(--font-size-2xl);
+  font-size: 3rem;
   font-weight: 700;
-  color: var(--primary-blue);
+  margin: var(--spacing-sm) 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.weather-condition {
-  font-size: var(--font-size-lg);
-  margin: var(--spacing-xs) 0;
+.weather-station {
+  font-size: var(--font-size-sm);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-md);
+}
+
+.data-status {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  margin-bottom: var(--spacing-sm);
+  padding: 2px 8px;
+  border-radius: var(--border-radius);
+  display: inline-block;
+}
+
+.data-status.live {
+  background-color: rgba(32, 178, 170, 0.2);
+  color: var(--white);
+}
+
+.data-status.fallback {
+  background-color: rgba(255, 140, 66, 0.2);
+  color: var(--white);
 }
 
 .weather-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+/* 4-Day Forecast Container */
+.forecast-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.forecast-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: var(--transition-normal);
+  border: 2px solid transparent;
+}
+
+.forecast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-blue);
+}
+
+.forecast-day {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--primary-blue);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.forecast-date {
+  font-size: var(--font-size-xs);
+  color: var(--gray-dark);
+  margin-bottom: var(--spacing-sm);
+}
+
+.forecast-condition {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--dark-navy);
+  margin: var(--spacing-xs) 0;
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.forecast-temp {
+  margin: var(--spacing-sm) 0;
+}
+
+.temp-high {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--dark-navy);
+}
+
+.temp-low {
+  font-size: var(--font-size-base);
+  color: var(--gray-dark);
+  margin-left: var(--spacing-xs);
+}
+
+.forecast-details {
   display: flex;
   justify-content: space-between;
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--gray-dark);
+  border-top: 1px solid var(--gray-light);
+  padding-top: var(--spacing-xs);
   margin-top: var(--spacing-sm);
 }
 
@@ -412,55 +531,31 @@ p {
 }
 
 /* ===================================
-   NEXT CLEANUP SECTION
+   COMBINED MAP SECTION ENHANCEMENTS
    =================================== */
 
-.next-cleanup-section {
+.next-cleanup-highlight {
   background: linear-gradient(135deg, var(--accent-coral) 0%, var(--warning-orange) 100%);
   color: var(--white);
   border-radius: var(--border-radius-lg);
-  padding: var(--spacing-xl);
-  margin: 0 calc(-1 * var(--spacing-md));
-  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
   text-align: center;
 }
 
-.next-cleanup-section h3 {
-  font-size: var(--font-size-2xl);
-  margin-bottom: var(--spacing-lg);
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
 .next-cleanup-info {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
-  backdrop-filter: blur(10px);
 }
 
 .next-cleanup-info p {
   margin-bottom: var(--spacing-sm);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
+  font-weight: 500;
 }
 
 .next-cleanup-info strong {
   font-weight: 700;
-}
-
-.google-maps-container {
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  margin-bottom: var(--spacing-lg);
-  height: 350px;
-}
-
-.google-map-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
+  font-size: var(--font-size-lg);
 }
 
 .cleanup-actions {
@@ -471,9 +566,8 @@ p {
 }
 
 .cleanup-actions .btn {
-  min-width: 160px;
+  min-width: 140px;
   font-weight: 600;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* ===================================
@@ -710,6 +804,154 @@ p {
 }
 
 /* ===================================
+   TOAST NOTIFICATIONS
+   =================================== */
+
+.toast-container {
+  position: fixed;
+  top: var(--header-height);
+  right: var(--spacing-md);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  max-width: 400px;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  border-left: 4px solid var(--primary-blue);
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--transition-normal);
+  pointer-events: all;
+  overflow: hidden;
+  min-width: 300px;
+}
+
+.toast-show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.toast-hide {
+  opacity: 0;
+  transform: translateX(100%);
+  max-height: 0;
+  margin-bottom: 0;
+}
+
+.toast-content {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.toast-icon {
+  font-size: var(--font-size-lg);
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--dark-navy);
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: none;
+  border: none;
+  font-size: var(--font-size-lg);
+  color: var(--gray-medium);
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.toast-close:hover {
+  background-color: var(--gray-light);
+  color: var(--dark-navy);
+}
+
+/* Toast Types */
+.toast-success {
+  border-left-color: var(--success-green);
+  background: linear-gradient(135deg, rgba(32, 178, 170, 0.1) 0%, var(--white) 100%);
+}
+
+.toast-error {
+  border-left-color: var(--accent-coral);
+  background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, var(--white) 100%);
+}
+
+.toast-warning {
+  border-left-color: var(--warning-orange);
+  background: linear-gradient(135deg, rgba(255, 140, 66, 0.1) 0%, var(--white) 100%);
+}
+
+.toast-info {
+  border-left-color: var(--primary-blue);
+  background: linear-gradient(135deg, rgba(0, 119, 190, 0.1) 0%, var(--white) 100%);
+}
+
+.toast-welcome {
+  border-left-color: var(--accent-coral);
+  background: linear-gradient(135deg, var(--secondary-beige) 0%, var(--white) 100%);
+  border-left-width: 6px;
+  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+  animation: welcomePulse 2s ease-in-out;
+}
+
+.toast-welcome .toast-content {
+  padding: var(--spacing-lg);
+}
+
+.toast-welcome .toast-message {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--dark-navy);
+}
+
+.toast-welcome .toast-icon {
+  font-size: 1.5rem;
+  animation: bounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes welcomePulse {
+  0% {
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+  }
+  50% {
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.6), 0 0 20px rgba(255, 107, 107, 0.4);
+  }
+  100% {
+    box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ===================================
    RESPONSIVE DESIGN
    =================================== */
 
@@ -753,10 +995,6 @@ p {
     max-width: 300px;
   }
   
-  .google-maps-container {
-    height: 280px;
-  }
-  
   .cleanup-actions {
     flex-direction: column;
     align-items: center;
@@ -787,20 +1025,39 @@ p {
     font-size: var(--font-size-xl);
   }
   
-  .next-cleanup-section {
-    padding: var(--spacing-lg);
+  .forecast-container {
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .next-cleanup-section h3 {
-    font-size: var(--font-size-xl);
+  .forecast-card {
+    padding: var(--spacing-sm);
   }
   
-  .google-maps-container {
-    height: 250px;
+  .weather-temp {
+    font-size: 2.5rem;
   }
   
-  .next-cleanup-info p {
-    font-size: var(--font-size-base);
+  .weather-details {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xs);
+  }
+  
+  .toast-container {
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+    max-width: none;
+  }
+  
+  .toast {
+    min-width: auto;
+  }
+  
+  .toast-content {
+    padding: var(--spacing-sm);
+  }
+  
+  .toast-welcome .toast-content {
+    padding: var(--spacing-md);
   }
   
   .events-grid {
