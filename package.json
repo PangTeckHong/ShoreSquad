@@ -1,0 +1,52 @@
+{
+  "name": "shoresquad",
+  "version": "1.0.0",
+  "description": "Rally your crew, track weather, and hit the next beach cleanup with our dope map app!",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=5000",
+    "dev": "npx live-server --port=5000 --open",
+    "build": "echo 'Static site - no build needed'",
+    "test": "echo 'Tests coming soon!'",
+    "deploy": "echo 'Deploy script coming soon!'"
+  },
+  "keywords": [
+    "beach-cleanup",
+    "environmental",
+    "social-network",
+    "weather",
+    "maps",
+    "pwa",
+    "mobile-first"
+  ],
+  "author": "ShoreSquad Team",
+  "license": "MIT",
+  "homepage": "https://shoresquad.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shoresquad/shoresquad.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shoresquad/shoresquad/issues"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "pwa": {
+    "name": "ShoreSquad",
+    "short_name": "ShoreSquad",
+    "theme_color": "#0077BE",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "start_url": "/"
+  }
+}

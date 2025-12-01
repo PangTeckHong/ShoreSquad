@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rally your crew, track weather, and hit the next beach cleanup with our dope map app!">
+    <meta name="keywords" content="beach cleanup, environmental action, weather tracking, social cleanup events">
+    <meta name="author" content="ShoreSquad">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#0077BE">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="ShoreSquad - Beach Cleanup Social Network">
+    <meta property="og:description" content="Rally your crew, track weather, and hit the next beach cleanup with our dope map app!">
+    <meta property="og:type" content="website">
+    
+    <title>ShoreSquad - Rally Your Crew for Beach Cleanups</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Header -->
+    <header class="header" role="banner">
+        <nav class="nav-container" role="navigation" aria-label="Main navigation">
+            <div class="logo">
+                <h1>🏖️ ShoreSquad</h1>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="#home" role="menuitem">Home</a></li>
+                <li role="none"><a href="#events" role="menuitem">Events</a></li>
+                <li role="none"><a href="#map" role="menuitem">Map</a></li>
+                <li role="none"><a href="#weather" role="menuitem">Weather</a></li>
+                <li role="none"><a href="#crew" role="menuitem">My Crew</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2>Rally Your Crew, Clean Our Shores! 🌊</h2>
+                <p>Track weather, find cleanup events, and make eco-action fun with your squad!</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" id="join-cleanup">Join Next Cleanup</button>
+                    <button class="btn btn-secondary" id="create-event">Create Event</button>
+                </div>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="beaches-cleaned">247</span>
+                    <span class="stat-label">Beaches Cleaned</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="active-squads">1,203</span>
+                    <span class="stat-label">Active Squads</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="trash-collected">15.2K</span>
+                    <span class="stat-label">lbs Trash Collected</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Weather Widget -->
+        <section class="weather-widget" id="weather" aria-label="Current weather conditions">
+            <h3>Beach Conditions Right Now</h3>
+            <div class="weather-info" id="weather-info">
+                <div class="weather-loading">Loading weather data...</div>
+            </div>
+        </section>
+
+        <!-- Interactive Map Section -->
+        <section class="map-section" id="map">
+            <h3>Find Cleanup Events Near You</h3>
+            <div class="map-container">
+                <div id="cleanup-map" class="map" role="img" aria-label="Interactive map showing cleanup events"></div>
+                <div class="map-controls">
+                    <button class="btn btn-small" id="locate-me" aria-label="Center map on my location">
+                        📍 Find Me
+                    </button>
+                    <button class="btn btn-small" id="filter-events" aria-label="Filter events by type">
+                        🔍 Filter
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Section -->
+        <section class="events-section" id="events">
+            <h3>Upcoming Beach Cleanups</h3>
+            <div class="events-filter">
+                <button class="filter-btn active" data-filter="all">All Events</button>
+                <button class="filter-btn" data-filter="today">Today</button>
+                <button class="filter-btn" data-filter="weekend">This Weekend</button>
+                <button class="filter-btn" data-filter="my-crew">My Crew</button>
+            </div>
+            <div class="events-grid" id="events-grid">
+                <!-- Events will be dynamically loaded here -->
+            </div>
+            <button class="btn btn-primary load-more" id="load-more-events">Load More Events</button>
+        </section>
+
+        <!-- My Crew Section -->
+        <section class="crew-section" id="crew">
+            <h3>Your Squad 👥</h3>
+            <div class="crew-stats">
+                <div class="crew-stat">
+                    <span class="crew-number">8</span>
+                    <span class="crew-label">Squad Members</span>
+                </div>
+                <div class="crew-stat">
+                    <span class="crew-number">23</span>
+                    <span class="crew-label">Cleanups Together</span>
+                </div>
+            </div>
+            <div class="crew-actions">
+                <button class="btn btn-secondary" id="invite-friends">Invite Friends</button>
+                <button class="btn btn-outline" id="find-squad">Find New Squad</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation (Mobile First) -->
+    <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+        <a href="#home" class="nav-item active" aria-label="Home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#map" class="nav-item" aria-label="Map">
+            <span class="nav-icon">🗺️</span>
+            <span class="nav-label">Map</span>
+        </a>
+        <a href="#events" class="nav-item" aria-label="Events">
+            <span class="nav-icon">📅</span>
+            <span class="nav-label">Events</span>
+        </a>
+        <a href="#weather" class="nav-item" aria-label="Weather">
+            <span class="nav-icon">🌤️</span>
+            <span class="nav-label">Weather</span>
+        </a>
+        <a href="#crew" class="nav-item" aria-label="My Crew">
+            <span class="nav-icon">👥</span>
+            <span class="nav-label">Crew</span>
+        </a>
+    </nav>
+
+    <!-- Loading Spinner -->
+    <div class="loading-overlay" id="loading-overlay" aria-hidden="true">
+        <div class="spinner"></div>
+        <p>Loading ShoreSquad...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
